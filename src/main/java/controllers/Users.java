@@ -23,12 +23,14 @@ public class Users{
         System.out.println("Invoked Users.UsersList()");
         JSONArray response = new JSONArray();
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID FROM Users");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID, Forename, Status, Admin FROM Users");
             ResultSet results = ps.executeQuery();
             while (results.next()==true) {
                 JSONObject row = new JSONObject();
                 row.put("UserID", results.getInt(1));
-                row.put("UserName", results.getString(2));
+                row.put("Forename", results.getInt(2));
+                row.put("Status", results.getInt(3));
+                row.put("Admin", results.getInt(4));
                 response.add(row);
             }
             return response.toString();
